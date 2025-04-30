@@ -25,45 +25,6 @@ Built using **Next.js 15 (App Router)** for the frontend and **Django REST Frame
 
 ---
 
-### 🗄️ Database: Railway PostgreSQL Setup
-This project uses PostgreSQL hosted on Railway for a production-grade, cloud-based database.
-
-You can either:
-
-- Connect to an existing Railway PostgreSQL instance
-
-- Or create a new one via Railway's dashboard
-
-✅ If You're Setting Up PostgreSQL via Railway
-Go to https://railway.app
-
-- Create a new project → Choose PostgreSQL
-
-- Copy the connection info from the "Connect" → "Public Network" tab
-
-Example:
-
-```bash
-Host:     containers-us-west-xxx.railway.app
-Port:     5432
-Database: railway
-User:     postgres
-Password: your-long-password
-```
-Paste This Into Your .env in api-backend folder (example given later in this readme file)
-
-🧪 Test DB Connection
-Make sure your .env is set up, then:
-```bash
-cd api-backend
-python manage.py migrate
-python manage.py createsuperuser
-```
-
-You’re now connected to Railway’s PostgreSQL!
-
----
-
 ## 🛠 Tech Stack
 
 | Layer       | Tech                          |
@@ -124,6 +85,45 @@ npm run dev
 
 Visit the app:  
 👉 `http://localhost:3000`
+
+---
+
+### 🗄️ Database: Railway PostgreSQL Setup
+This project uses PostgreSQL hosted on Railway for a production-grade, cloud-based database.
+
+You can either:
+
+- Connect to an existing Railway PostgreSQL instance
+
+- Or create a new one via Railway's dashboard
+
+✅ If You're Setting Up PostgreSQL via Railway
+Go to https://railway.app
+
+- Create a new project → Choose PostgreSQL
+
+- Copy the connection info from the "Connect" → "Public Network" tab
+
+Example:
+
+```bash
+Host:     containers-us-west-xxx.railway.app
+Port:     5432
+Database: railway
+User:     postgres
+Password: your-long-password
+```
+Paste This Into Your .env in api-backend folder (example given later in this readme file)
+
+🧪 Test DB Connection
+Make sure your .env is set up, then:
+```bash
+cd api-backend
+python manage.py migrate
+python manage.py createsuperuser
+```
+
+You’re now connected to Railway’s PostgreSQL!
 
 ---
 
