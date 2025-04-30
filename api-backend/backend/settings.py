@@ -58,10 +58,14 @@ MIDDLEWARE = [
 ]
 
 
+
 # CORS & Security
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOWED_ORIGINS = [config('FRONTEND_ORIGIN')]
-CSRF_TRUSTED_ORIGINS = [config('FRONTEND_ORIGIN')]
+FRONTEND_ORIGINS = config('FRONTEND_ORIGINS', cast=lambda v: [s.strip() for s in v.split(',')])
+
+CORS_ALLOWED_ORIGINS = FRONTEND_ORIGINS
+CSRF_TRUSTED_ORIGINS = FRONTEND_ORIGINS
+
 
 
 # Use secure cookies in production
