@@ -4,6 +4,8 @@ from rest_framework.response import Response
 from rest_framework import status, permissions
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.permissions import IsAuthenticated
+
 import re
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -27,3 +29,13 @@ class LoginView(APIView):
             return Response({"message": "Login successful"}, status=status.HTTP_200_OK)
 
         return Response({"error": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
+
+class MeView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        return Response({
+            "username": user.username,
+            "email": user.email,
+        })

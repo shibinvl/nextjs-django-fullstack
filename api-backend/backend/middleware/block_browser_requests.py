@@ -10,7 +10,8 @@ class BlockNonApiClientsMiddleware:
         origin = request.headers.get('Origin')
         x_requested_with = request.headers.get('X-Requested-With')
 
-        getattr(settings, 'FRONTEND_ORIGINS', [])
+        # ✅ Correct: Read allowed origins from settings
+        allowed_origins = getattr(settings, 'FRONTEND_ORIGINS', [])
 
         # Allow robots.txt and static file paths
         if path == "/robots.txt" or path.startswith("/static/"):
