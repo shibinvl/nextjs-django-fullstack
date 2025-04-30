@@ -1,0 +1,19 @@
+# Node.js
+/frontend/node_modules/
+/frontend/.next/
+/frontend/.env.local
+
+# Python
+/api-backend/__pycache__/
+/api-backend/*.pyc
+/api-backend/env/
+/api-backend/.env
+
+# MacOS
+.DS_Store
+
+# VSCode
+.vscode/
+
+# Logs
+*.log
