@@ -35,13 +35,25 @@ export const login = async (rawUsername: string, password: string) => {
 };
 
 
+
 export const logout = async () => {
-  await api.post("/logout/");
+  await api.post(
+    "/logout/",
+    null,
+    {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+      withCredentials: true,
+    }
+  );
 };
+
 
 export const getMe = async () => {
   const res = await api.get("/me/", {
     headers: { "X-Requested-With": "XMLHttpRequest" },
+    withCredentials: true,
   });
   return res.data;
 };

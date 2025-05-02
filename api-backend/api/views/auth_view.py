@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions
@@ -8,7 +8,6 @@ from rest_framework.permissions import IsAuthenticated
 
 import re
 
-@method_decorator(csrf_exempt, name='dispatch')
 class LoginView(APIView):
     permission_classes = [permissions.AllowAny]
 
@@ -30,6 +29,7 @@ class LoginView(APIView):
 
         return Response({"error": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
 
+#me
 class MeView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -39,3 +39,12 @@ class MeView(APIView):
             "username": user.username,
             "email": user.email,
         })
+    
+
+#logout
+class LogoutView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        logout(request)
+        return Response({"message": "Logged out successfully"}, status=status.HTTP_200_OK)

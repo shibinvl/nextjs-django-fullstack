@@ -3,6 +3,8 @@
 import React from "react";
 import { Avatar, Badge, Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Switch } from "@heroui/react";
 import { Icon } from "@iconify/react";
+import { useRouter } from "next/navigation";
+import { logout } from "@/lib/auth";
 
 interface ProfileActionsProps {
   isDarkTheme: boolean;
@@ -10,6 +12,16 @@ interface ProfileActionsProps {
 }
 
 export function ProfileActions({ isDarkTheme, onThemeToggle }: ProfileActionsProps) {
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      router.push("/login");
+    } catch {
+      alert("Logout failed");
+    }
+  };
   return (
     <div className="flex justify-between gap-4">
       {/* Theme toggle */}
@@ -55,7 +67,7 @@ export function ProfileActions({ isDarkTheme, onThemeToggle }: ProfileActionsPro
           </DropdownItem>
           <DropdownItem key="settings">My Settings</DropdownItem>
           <DropdownItem key="team">Team Settings</DropdownItem>
-          <DropdownItem key="logout" color="danger">
+          <DropdownItem key="logout" color="danger" onPress={handleLogout}>
             Log Out
           </DropdownItem>
         </DropdownMenu>
